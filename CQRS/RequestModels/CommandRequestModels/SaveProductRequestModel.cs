@@ -1,5 +1,7 @@
+using MediatR;
+
 namespace CQRS.Sample.CQRS.RequestModels.CommandRequestModels {
-    public class SaveProductRequestModel {
+    public class SaveProductRequestModel : IRequest<int> {
         public string Name { get; set; }
         public string Manufacteur { get; set; }
         public string Description { get; set; }
