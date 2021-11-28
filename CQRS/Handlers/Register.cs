@@ -9,6 +9,7 @@ namespace CQRS.Sample.CQRS.Handlers {
     public static void Handlers (IServiceCollection services) {
       services.AddScoped<ISaveProductCommandHandler, SaveProductCommandHandler> ();
       services.AddScoped<IAllProductsQueryHandler, AllProductsQueryHandler> ();
+      services.AddScoped<IPriceRangeProductsQueryHandler, PriceRangeProductsQueryHandler> ();
     }
   }
 }

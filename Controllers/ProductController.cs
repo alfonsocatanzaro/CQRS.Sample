@@ -10,13 +10,16 @@ namespace CQRS.Sample.Controllers {
     public class ProductController : ControllerBase {
         private readonly ISaveProductCommandHandler saveProductCommandHandler;
         private readonly IAllProductsQueryHandler allProductsQueryHandler;
+        private readonly IPriceRangeProductsQueryHandler priceRangeProductsQueryHandler;
 
         public ProductController (
             ISaveProductCommandHandler saveProductCommandHandler,
-            IAllProductsQueryHandler allProductsQueryHandler
+            IAllProductsQueryHandler allProductsQueryHandler,
+            IPriceRangeProductsQueryHandler priceRangeProductsQueryHandler
         ) {
             this.saveProductCommandHandler = saveProductCommandHandler;
             this.allProductsQueryHandler = allProductsQueryHandler;
+            this.priceRangeProductsQueryHandler = priceRangeProductsQueryHandler;
         }
 
         [HttpPost]
@@ -33,5 +36,11 @@ namespace CQRS.Sample.Controllers {
             return Ok (result);
         }
 
+        [HttpGet]
+        [Route ("price-range")]
+        public async Task<IActionResult> PriceRangeProducts (int minPrice, int maxPrice) {
+            var result = await priceRangeProductsQueryHandler.PriceRangeProductsAsync (minPrice, maxPrice);
+            return Ok (result);
+        }
     }
 }

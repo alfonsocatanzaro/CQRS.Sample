@@ -15,12 +15,12 @@ namespace CQRS.Sample.CQRS.Handlers.QueryHandlers {
     }
     public async Task<List<AllProductsResponseModel>> GetListAsync () {
       return await _dbContext.Products
-        .Select (p => new AllProductsResponseModel {
-          ProductId = p.ProductId,
-            Name = p.Name,
-            Manufacturer = p.Manufacteur,
-            Description = p.Description,
-            Price = p.Price
+        .Select (_ => new AllProductsResponseModel {
+          ProductId = _.ProductId,
+            Name = _.Name,
+            Manufacturer = _.Manufacteur,
+            Description = _.Description,
+            Price = _.Price
         })
         .ToListAsync ();
     }
